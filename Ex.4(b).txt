@@ -1,0 +1,74 @@
+class Node:
+    def __init__(self, car):
+        self.car = car
+        self.next = None
+
+
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    # Enqueue operation
+    def enqueue(self):
+        car = input("Enter car number: ")
+
+        new_node = Node(car)
+
+        if self.rear is None:
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+
+        print("Car entered the parking system.")
+
+    # Dequeue operation
+    def dequeue(self):
+        if self.front is None:
+            print("Parking queue is empty")
+        else:
+            car = self.front.car
+            self.front = self.front.next
+
+            if self.front is None:
+                self.rear = None
+
+            print("Car left the parking system:", car)
+
+    # Display operation
+    def display(self):
+        if self.front is None:
+            print("No cars in parking queue")
+        else:
+            temp = self.front
+            print("Cars in parking queue:")
+
+            while temp:
+                print(temp.car)
+                temp = temp.next
+
+
+# Main program
+queue = Queue()
+
+while True:
+    print("\n--- CAR PARKING SYSTEM ---")
+    print("1. Enqueue Car")
+    print("2. Dequeue Car")
+    print("3. Display Cars")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        queue.enqueue()
+    elif choice == 2:
+        queue.dequeue()
+    elif choice == 3:
+        queue.display()
+    elif choice == 4:
+        print("Exit")
+        break
+    else:
+        print("Invalid choice")

@@ -1,0 +1,99 @@
+class Node:
+    def __init__(self, song):
+        self.song = song
+        self.next = None
+
+
+class Playlist:
+    def __init__(self):
+        self.head = None
+
+    # A) Create playlist
+    def create(self):
+        n = int(input("Enter number of songs: "))
+
+        for i in range(n):
+            song = input("Enter song name: ")
+            new_node = Node(song)
+
+            if self.head is None:
+                self.head = new_node
+            else:
+                temp = self.head
+                while temp.next:
+                    temp = temp.next
+                temp.next = new_node
+
+    # B) Insert a song
+    def insert(self):
+        song = input("Enter song to insert: ")
+        new_node = Node(song)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+    # C) Delete a song
+    def delete(self):
+        song = input("Enter song to delete: ")
+
+        temp = self.head
+        prev = None
+
+        while temp:
+            if temp.song == song:
+                if prev is None:
+                    self.head = temp.next
+                else:
+                    prev.next = temp.next
+                print("Song deleted.")
+                return
+
+            prev = temp
+            temp = temp.next
+
+        print("Song not found.")
+
+    # D) Display playlist
+    def display(self):
+        if self.head is None:
+            print("Playlist is empty.")
+            return
+
+        temp = self.head
+        print("Music Playlist:")
+
+        while temp:
+            print(temp.song)
+            temp = temp.next
+
+
+# Main program
+playlist = Playlist()
+
+while True:
+    print("\n--- MUSIC PLAYLIST ---")
+    print("1. Create Playlist")
+    print("2. Insert Song")
+    print("3. Delete Song")
+    print("4. Display Playlist")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        playlist.create()
+    elif choice == 2:
+        playlist.insert()
+    elif choice == 3:
+        playlist.delete()
+    elif choice == 4:
+        playlist.display()
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice.")

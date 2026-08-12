@@ -1,0 +1,10 @@
+data = {
+    1: ['a', 'b'],
+    2: ['c', 'd'],
+    3: ['e', 'f']
+}
+
+for a in data[1]:
+    for b in data[2]:
+        for c in data[3]:
+            print(a + b + c)
